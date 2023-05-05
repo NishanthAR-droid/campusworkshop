@@ -40,7 +40,13 @@ def update_task_entry(task_id: int , text: str):
     cursor.execute(query)
     postgres.commit()
     cursor.close()
-
+    
+def update_status_entry(task_id: int , status: str):
+    cursor = postgres.cursor()
+    query = "Update tasks set status = '{}' where id = {};".format(status,task_id)
+    cursor.execute(query)
+    postgres.commit()
+    cursor.close()
 
 def insert_new_task(text: str , id: int) -> int:
     """Insert new task to todo table.
